@@ -1,11 +1,14 @@
 import { Box, Button, HStack, Image, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [scroll, setScroll] = useState(true);
   const [winScroll, setWinScroll] = useState(true);
+
+  const location = useLocation();
+  console.log(location.pathname);
 
   useEffect(() => {
     document.addEventListener("wheel", (event) => {
@@ -33,7 +36,8 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Stack
-      bg={winScroll ? "transparent" : "gray.800"}
+      //   bg={winScroll && location.pathname === "/" ? "transparent" : "gray.800"}
+      bg="gray.800"
       zIndex={99}
       transform={scroll ? "translateY(0px)" : "translateY(-60px)"}
       transition={"0.5s"}
@@ -47,7 +51,7 @@ export default function Header() {
       boxShadow={"sm"}
       position={"fixed"}
     >
-      <HStack justifyContent={"space-between"} w="1024px" h={"full"}>
+      <HStack justifyContent={"space-between"} w="1400px" h={"full"}>
         <HStack spacing={10}>
           <Box w="24">
             <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="Main logo" />
@@ -55,7 +59,7 @@ export default function Header() {
           <HStack textTransform={"uppercase"} spacing={6}>
             {GNB.map((item) => (
               <Link to={item.href} key={item.title} aria-label={item.title}>
-                <Text>{item.title}</Text>
+                <Text color={location.pathname === item.href ? "red.600" : "white"}>{item.title}</Text>
               </Link>
             ))}
           </HStack>
