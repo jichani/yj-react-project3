@@ -36,3 +36,9 @@
 
 - https://tanstack.com/query/v3/docs/react/overview
 - npm i react-query
+
+### 리액트 헬멧이랑 쿼리 공부해오기
+
+### 네브 눌렀을 때 바뀌는 거 구현해오기
+
+### 안에 내용 집어넣기 ?
