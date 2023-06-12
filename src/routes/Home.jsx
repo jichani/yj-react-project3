@@ -1,5 +1,14 @@
 import { Box } from "@chakra-ui/react";
+import CarouselSlick from "../components/Carousel";
 
 export default function Home() {
-  return <Box py={16}>홈</Box>;
+  return (
+    <>
+      {/* 캐러셀 */}
+      <Box h="100vh">
+        <CarouselSlick />
+      </Box>
+      ;
+    </>
+  );
 }
