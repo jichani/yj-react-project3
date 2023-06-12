@@ -1,3 +1,5 @@
+import { Box } from "@chakra-ui/react";
+
 export default function Comics() {
-  return <div>코믹스</div>;
+  return <Box py="16">Comics</Box>;
 }

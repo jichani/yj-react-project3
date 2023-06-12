@@ -1,3 +1,5 @@
+import { Box } from "@chakra-ui/react";
+
 export default function Home() {
-  return <div>홈</div>;
+  return <Box py={16}>홈</Box>;
 }
