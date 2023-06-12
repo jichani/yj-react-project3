@@ -7,3 +7,8 @@
 ## pretendard 폰트
 
 - npm i @noonnu/pretendard-regular@0.1.0
+
+## react-router-dom
+
+- npm i react-router-dom
+- https://reactrouter.com/en/main/route/route
