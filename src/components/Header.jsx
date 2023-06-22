@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [scroll, setScroll] = useState(true);
-  const [setWinScroll] = useState(true);
+  const [winScroll, setWinScroll] = useState(true);
 
   const location = useLocation();
   console.log(location.pathname);
@@ -36,8 +36,7 @@ export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Stack
-      //   bg={winScroll && location.pathname === "/" ? "transparent" : "gray.800"}
-      bg="gray.800"
+      bg={winScroll && location.pathname === "/" ? "gray.800" : "gray.800"}
       zIndex={99}
       transform={scroll ? "translateY(0px)" : "translateY(-60px)"}
       transition={"0.5s"}
