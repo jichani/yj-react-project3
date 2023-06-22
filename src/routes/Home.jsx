@@ -4,13 +4,16 @@ import Carditems from "../components/Carditems";
 import TitleimageSkew from "../components/TitleimageSkew";
 import { useQuery } from "react-query";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 const settings = {
   dots: true,
+  autoplay: true,
   infinite: true,
   speed: 500,
   slidesToShow: 7,
   slidesToScroll: 1,
+  autoplaySpeed: 1500,
 };
 
 export default function Home() {
@@ -64,18 +67,23 @@ export default function Home() {
       {/* Comics */}
       <VStack w="full" position={"relative"} h={"400px"}>
         {/* 한박스 위로 올라오게 하는 범위지정 */}
-        <Box position={"absolute"} w={"7xl"} h={"full"} top={-16} bg={"white"}>
+        <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
           {/* 리액트 슬릭 슬라이더 */}
           <Slider {...settings}>
+            {/* 마블 api */}
             {data?.data?.results?.map((item, i) => (
-              <div key={"i"}>
-                <Text>
-                  <Box w={"180px"} h="240px">
-                    <Image src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt={`comics ${i}`} w="full" h={"full"} objectFit={"cover"} />
+              <Link to={`/comics/${item.id}`}>
+                <VStack key={"i"} h="full" role="group" cursor={"pointer"}>
+                  <Box overflow={"hidden"} w={"170px"} h="240px">
+                    <Box w={"170px"} h="240px" _groupHover={{ transform: "scale(1.1)" }} transition={"0.5s"}>
+                      <Image src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt={`comics ${i}`} w="full" h={"full"} objectFit={"cover"} />
+                    </Box>
                   </Box>
-                  {item.title}
-                </Text>
-              </div>
+                  <Text _groupHover={{ color: "red.500", fontWeight: "600" }} mt="2" px="2">
+                    {item.title.substr(0, 32)}
+                  </Text>
+                </VStack>
+              </Link>
             ))}
           </Slider>
         </Box>
