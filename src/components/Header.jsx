@@ -8,7 +8,7 @@ export default function Header() {
   const [winScroll, setWinScroll] = useState(true);
 
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   useEffect(() => {
     document.addEventListener("wheel", (event) => {

@@ -9,7 +9,7 @@ export default function TitleimageSkew({ title, description, imgUrl }) {
         <Box bg={"gray.800"} w="650px" h="800px" transform={"rotate(-10deg) scale(1.4)"} translateY={"30px"} />
       </Box>
       {/* 두 번째 자식 (오른쪽) */}
-      <Box w={"55%"} h={"full"} bg={"blue.100"}>
+      <Box w={"55%"} h={"full"}>
         <Image w={"full"} h={"full"} objectFit={"cover"} objectPosition={"center"} src={imgUrl} alt="Marvel Img1" />
       </Box>
       {/* 세번째 자식이지만 절대값 지정 */}
