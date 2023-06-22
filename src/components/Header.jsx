@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const [scroll, setScroll] = useState(true);
-  const [winScroll, setWinScroll] = useState(true);
+  const [setWinScroll] = useState(true);
 
   const location = useLocation();
   console.log(location.pathname);
