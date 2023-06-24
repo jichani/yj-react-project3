@@ -79,7 +79,7 @@ export default function Home() {
                       <Image src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt={`comics ${i}`} w="full" h={"full"} objectFit={"cover"} />
                     </Box>
                   </Box>
-                  <Text _groupHover={{ color: "red.500", fontWeight: "600" }} mt="2" px="2">
+                  <Text _groupHover={{ color: "red.500", fontWeight: "600" }} mt="2" px="2" color="black">
                     {item.title.substr(0, 32)}
                   </Text>
                 </VStack>
@@ -87,6 +87,19 @@ export default function Home() {
             ))}
           </Slider>
         </Box>
+      </VStack>
+
+      {/* 기울어진 이미지 타이틀 */}
+      <TitleimageSkew
+        title="Events"
+        description="“Coogler agreed, noting that with this decision “a new theme kind of surfaced for us of grief and loss and how do you move forward"
+        imgUrl="https://terrigen-cdn-dev.marvel.com/content/prod/1x/sre7000_trl_comp_wta_v0265.1061_r_0.jpg"
+      />
+
+      {/* Events */}
+      <VStack w="full" position={"relative"} h={"400px"} bg={""}>
+        {/* 한박스 위로 올라오게 하는 범위지정 */}
+        <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}></Box>
       </VStack>
     </>
   );

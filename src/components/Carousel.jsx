@@ -22,7 +22,7 @@ export default function CarouselSlick() {
             h="480px"
             w="full"
             justifyContent="center"
-            color="white"
+            color=""
             backgroundImage={"url('https://media.contentapi.ea.com/content/dam/news/www-ea/common/ea-motive-new-title-teaser-16x9.jpg.adapt.1456w.jpg')"}
             backgroundPosition="top"
             backgroundSize="cover"
@@ -61,7 +61,7 @@ export default function CarouselSlick() {
             h="480px"
             w="full"
             justifyContent="center"
-            color="white"
+            color=""
             backgroundImage={"url('https://cdn.britannica.com/60/182360-050-CD8878D6/Avengers-Age-of-Ultron-Joss-Whedon.jpg')"}
             backgroundPosition="top"
             backgroundSize="cover"
@@ -100,7 +100,7 @@ export default function CarouselSlick() {
             h="480px"
             w="full"
             justifyContent="center"
-            color="white"
+            color=""
             backgroundImage={"url('https://cdn.britannica.com/62/182362-050-BD31B42D/Scarlett-Johansson-Black-Widow-Chris-Hemsworth-Thor.jpg')"}
             backgroundPosition="center"
             backgroundSize="cover"
