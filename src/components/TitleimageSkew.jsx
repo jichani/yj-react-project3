@@ -1,4 +1,5 @@
 import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { RxEnter } from "react-icons/rx";
 
 export default function TitleimageSkew({ title, description, imgUrl }) {
   return (
@@ -6,7 +7,7 @@ export default function TitleimageSkew({ title, description, imgUrl }) {
       {/* 첫 번째 자식(왼쪽) */}
       <Box w={"45%"} h={"full"}>
         {/* 빈 박스 기울어진 */}
-        <Box bg={"gray.800"} w="650px" h="800px" transform={"rotate(-10deg) scale(1.4)"} translateY={"30px"} />
+        <Box bg="gray.800" w="full" h="full" transform={"rotate(-10deg) scale(1.5) translateY(40px)"} />
       </Box>
       {/* 두 번째 자식 (오른쪽) */}
       <Box w={"55%"} h={"full"}>
@@ -21,7 +22,7 @@ export default function TitleimageSkew({ title, description, imgUrl }) {
           <Text color={"white"} w={"2xl"}>
             {description}
           </Text>
-          <Button mt="6" textTransform={"uppercase"} variant={"outline"} colorScheme={"red"}>
+          <Button mt="6" textTransform={"uppercase"} variant={"outline"} colorScheme={"red"} rightIcon={<RxEnter />}>
             List more
           </Button>
         </VStack>
