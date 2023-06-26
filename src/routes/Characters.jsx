@@ -96,7 +96,7 @@ export default function Characters() {
           </Grid>
           {/* 페이지 네이션 */}
           <Box>
-            <Pagination activePage={page} itemsCountPerPage={numLimit} totalItemsCount={1520} pageRangeDisplayed={5} onChange={handlePageChange} />
+            <Pagination activePage={page} itemsCountPerPage={numLimit} totalItemsCount={total} pageRangeDisplayed={5} onChange={handlePageChange} />
           </Box>
         </VStack>
       </VStack>
