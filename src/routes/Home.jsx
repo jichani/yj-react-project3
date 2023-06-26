@@ -5,6 +5,8 @@ import TitleimageSkew from "../components/TitleimageSkew";
 import { useQuery } from "react-query";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import { charactesList, comicsList, eventsList } from "../src";
+import SkeletonList from "../components/SkeletonList";
 
 const settings = {
   dots: true,
@@ -17,16 +19,11 @@ const settings = {
 };
 
 export default function Home() {
-  const { data, isLoading } = useQuery("Comics", () =>
-    fetch(`https://gateway.marvel.com:443/v1/public/comics?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
-  );
+  const { data, isLoading } = useQuery("Comics", comicsList);
 
-  const { data: eventsData, isLoading: eventsIsLoading } = useQuery("eventsData", () =>
-    fetch(`https://gateway.marvel.com:443/v1/public/events?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
-  );
-  const { data: charactersData, isLoading: charactersIsLoading } = useQuery("charactersData", () =>
-    fetch(`https://gateway.marvel.com:443/v1/public/characters?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
-  );
+  const { data: eventsData, isLoading: eventsIsLoading } = useQuery("eventsData", eventsList);
+
+  const { data: charactersData, isLoading: charactersIsLoading } = useQuery("charactersData", charactesList);
 
   // console.dir(data, isLoading);
 
@@ -77,6 +74,7 @@ export default function Home() {
       <VStack w="full" position={"relative"} h={"400px"}>
         {/* 한박스 위로 올라오게 하는 범위지정 */}
         <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
+          {isLoading ? <SkeletonList /> : ""}
           {/* 리액트 슬릭 슬라이더 */}
           <Slider {...settings}>
             {/* 마블 api */}
@@ -109,6 +107,7 @@ export default function Home() {
       <VStack w="full" position={"relative"} h={"400px"}>
         {/* 한박스 위로 올라오게 하는 범위지정 */}
         <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
+          {eventsIsLoading ? <SkeletonList /> : ""}
           {/* 리액트 슬릭 슬라이더 */}
           <Slider {...settings}>
             {/* 마블 api */}
@@ -137,6 +136,7 @@ export default function Home() {
       <VStack w="full" position={"relative"} h={"400px"}>
         {/* 한박스 위로 올라오게 하는 범위지정 */}
         <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
+          {charactersIsLoading ? <SkeletonList /> : ""}
           {/* 리액트 슬릭 슬라이더 */}
           <Slider {...settings}>
             {/* 마블 api */}
