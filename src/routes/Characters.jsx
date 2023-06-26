@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, HStack, Image, Select, Text, VStack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Image, Link, Select, Text, VStack } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { charactesList } from "../src";
 import { useState } from "react";
