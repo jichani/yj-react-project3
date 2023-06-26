@@ -24,10 +24,13 @@ export default function Home() {
   const { data: eventsData, isLoading: eventsIsLoading } = useQuery("eventsData", () =>
     fetch(`https://gateway.marvel.com:443/v1/public/events?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
   );
+  const { data: charactersData, isLoading: charactersIsLoading } = useQuery("charactersData", () =>
+    fetch(`https://gateway.marvel.com:443/v1/public/characters?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
+  );
 
-  console.dir(data, isLoading);
+  // console.dir(data, isLoading);
 
-  console.log(eventsData);
+  console.log(charactersData);
 
   const featuresLists = [
     {
@@ -129,6 +132,31 @@ export default function Home() {
 
       {/* 기울어진 이미지 타이틀 */}
       <TitleimageSkew title="Characters" description="Hi~!" imgUrl="http://i.annihil.us/u/prod/marvel/i/mg/c/10/51ca0fc4c83c8.jpg" />
+
+      {/* Characters 컨텐츠 리스트*/}
+      <VStack w="full" position={"relative"} h={"400px"}>
+        {/* 한박스 위로 올라오게 하는 범위지정 */}
+        <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
+          {/* 리액트 슬릭 슬라이더 */}
+          <Slider {...settings}>
+            {/* 마블 api */}
+            {charactersData?.data?.results?.map((item, i) => (
+              <Link to={`/characters/${item.id}?type=characters`}>
+                <VStack key={"i"} h="full" role="group" cursor={"pointer"}>
+                  <Box overflow={"hidden"} w={"170px"} h="240px">
+                    <Box w={"170px"} h="240px" _groupHover={{ transform: "scale(1.1)" }} transition={"0.5s"}>
+                      <Image src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt={`comics ${i}`} w="full" h={"full"} objectFit={"cover"} />
+                    </Box>
+                  </Box>
+                  <Text _groupHover={{ color: "red.500", fontWeight: "600" }} mt="2" px="2" color="black">
+                    {item.name}
+                  </Text>
+                </VStack>
+              </Link>
+            ))}
+          </Slider>
+        </Box>
+      </VStack>
     </>
   );
 }
