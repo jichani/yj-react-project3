@@ -17,11 +17,17 @@ const settings = {
 };
 
 export default function Home() {
-  const { isLoading, error, data } = useQuery("Comics", () =>
-    fetch("https://gateway.marvel.com:443/v1/public/comics?apikey=ca5379f491f01785c87950e214b0c512").then((res) => res.json())
+  const { data, isLoading } = useQuery("Comics", () =>
+    fetch(`https://gateway.marvel.com:443/v1/public/comics?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
   );
 
-  console.dir(data, isLoading, error);
+  const { data: eventsData, isLoading: eventsIsLoading } = useQuery("eventsData", () =>
+    fetch(`https://gateway.marvel.com:443/v1/public/events?apikey=${process.env.REACT_APP_PUBLIC_KEY}`).then((res) => res.json())
+  );
+
+  console.dir(data, isLoading);
+
+  console.log(eventsData);
 
   const featuresLists = [
     {
@@ -64,7 +70,7 @@ export default function Home() {
         imgUrl="https://assets.vogue.in/photos/5ce412599cc0c0b8f5f9b4bf/4:3/w_1440,h_1080,c_limit/Everything-you-need-to-know-before-watching-Marvel-movies-this-year.jpg"
       />
 
-      {/* Comics */}
+      {/* Comics 컨텐츠 리스트*/}
       <VStack w="full" position={"relative"} h={"400px"}>
         {/* 한박스 위로 올라오게 하는 범위지정 */}
         <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
@@ -72,7 +78,7 @@ export default function Home() {
           <Slider {...settings}>
             {/* 마블 api */}
             {data?.data?.results?.map((item, i) => (
-              <Link to={`/comics/${item.id}`}>
+              <Link to={`/comics/${item.id}?type=comics`}>
                 <VStack key={"i"} h="full" role="group" cursor={"pointer"}>
                   <Box overflow={"hidden"} w={"170px"} h="240px">
                     <Box w={"170px"} h="240px" _groupHover={{ transform: "scale(1.1)" }} transition={"0.5s"}>
@@ -96,11 +102,33 @@ export default function Home() {
         imgUrl="https://terrigen-cdn-dev.marvel.com/content/prod/1x/sre7000_trl_comp_wta_v0265.1061_r_0.jpg"
       />
 
-      {/* Events */}
-      <VStack w="full" position={"relative"} h={"400px"} bg={""}>
+      {/* Events 컨텐츠 리스트*/}
+      <VStack w="full" position={"relative"} h={"400px"}>
         {/* 한박스 위로 올라오게 하는 범위지정 */}
-        <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}></Box>
+        <Box position={"absolute"} w={"7xl"} h={"full"} py={8} px={2} top={-16} bg={"white"}>
+          {/* 리액트 슬릭 슬라이더 */}
+          <Slider {...settings}>
+            {/* 마블 api */}
+            {eventsData?.data?.results?.map((item, i) => (
+              <Link to={`/events/${item.id}?type=events`}>
+                <VStack key={"i"} h="full" role="group" cursor={"pointer"}>
+                  <Box overflow={"hidden"} w={"170px"} h="240px">
+                    <Box w={"170px"} h="240px" _groupHover={{ transform: "scale(1.1)" }} transition={"0.5s"}>
+                      <Image src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt={`comics ${i}`} w="full" h={"full"} objectFit={"cover"} />
+                    </Box>
+                  </Box>
+                  <Text _groupHover={{ color: "red.500", fontWeight: "600" }} mt="2" px="2" color="black">
+                    {item.title.substr(0, 32)}
+                  </Text>
+                </VStack>
+              </Link>
+            ))}
+          </Slider>
+        </Box>
       </VStack>
+
+      {/* 기울어진 이미지 타이틀 */}
+      <TitleimageSkew title="Characters" description="Hi~!" imgUrl="http://i.annihil.us/u/prod/marvel/i/mg/c/10/51ca0fc4c83c8.jpg" />
     </>
   );
 }
