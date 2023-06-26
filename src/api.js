@@ -8,7 +8,12 @@ export async function comicsList() {
 export async function eventsList() {
     return await fetch(`${Base_PATH}/v1/public/events?apikey=${API_KEY}`).then((res) => res.json())
 }
-export async function charactesList(props) {
-    const customLimit = props.queryKey[1]
-    return await fetch(`${Base_PATH}/v1/public/characters?limit=${customLimit}&apikey=${API_KEY}`).then((res) => res.json())
+export async function charactersList(props) {
+    const customLimit = props.queryKey[1].numLimit;
+    const page = props.queryKey[1].page;
+    const offset = (page - 1) * customLimit;
+    console.log(props);
+    return await fetch(
+        `${Base_PATH}/v1/public/characters?limit=${customLimit}&offset=${offset}&apikey=${API_KEY}`
+    ).then((res) => res.json());
 }
