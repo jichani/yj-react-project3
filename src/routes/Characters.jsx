@@ -6,6 +6,7 @@ import SkeletonList from "../components/SkeletonList";
 import Pagination from "react-js-pagination";
 import "./paging.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import SkeletonPage from "../components/SkeletonPage";
 
 export default function Characters() {
   const [numLimit, setNumlimit] = useState(6);
@@ -49,9 +50,9 @@ export default function Characters() {
               <option value={36}>36</option>
             </Select>
           </HStack>
-          {isLoading && <SkeletonList />}
           {/* 게시판 */}
-          <Grid templateColumns={"repeat(6, 1fr)"} w="full" gap="4">
+          <Grid templateColumns={"repeat(6, 1fr)"} w="full" gap="4" pb={10}>
+            {isLoading && <SkeletonPage gap="6" num={numLimit} column="6" />}
             {data?.data?.results.map((item, i) => (
               <GridItem w="200px" bg={"red.500"} role="group">
                 <VStack w="full">
